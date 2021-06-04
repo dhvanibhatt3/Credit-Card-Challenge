@@ -17,13 +17,13 @@
             margin-left: 220px;
             height: 300px;
             width: 600px;
-    
+            
         }
         
         .card__part{
             box-shadow: 1px 1px #aaa3a3;
             top: 0;
-            float: left;
+            float:left;
             position: absolute;
             z-index: 1000;
             left: 0;
@@ -113,8 +113,10 @@
         .name-address{
             font-style: normal !important;
             font-size: 15px;
+            
         }
         .show_card{
+            
             border-radius: 15px;
             background:rgb(253, 253, 253);
             height:28px ;
@@ -122,7 +124,7 @@
             margin-left: 10px;
             border: unset;
         }
-        .show_card_title{
+        .show_card_titile{
             margin-top: 10px !important;
             text-align: center;
             color: #308bd6;
@@ -147,6 +149,7 @@
             border: thick solid gray;
             border-width: 2px;
             border-radius: 10px;
+           
         }   
         .loader {
             border: 16px solid #f3f3f3;
@@ -165,6 +168,7 @@
             0% { -webkit-transform: rotate(0deg); }
             100% { -webkit-transform: rotate(360deg); }
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -194,8 +198,8 @@
                         <div>
                             <span class="card_number" id="card_number_before">**** **** **** 6258</span>
                             <span class="card_number" id="card_number_show">2134 5634 3253 6258 <img onclick="copy_number()" class="copy-number" src="https://img.icons8.com/FFFFFF/20/20/copy.png" /></span>
-                            <textarea id="inp_value">2134 5634 3253 6258</textarea>
-                            <button class="show_card" id="show_info" onclick="show_card_info()"><span class="show_card_title">Show Card Information</span></button>
+                            <textarea id="inp_value" value="2134 5634 3253 6258">2134 5634 3253 6258</textarea>
+                            <button class="show_card" id="show_info" onclick="show_card_info()"><span class="show_card_titile">Show Card Information</span></button>
                             <div class="cvc_exp card__label" id="cvc_exp">
                                 <span class="cvc">CVC:<b>123</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <span class="exp">EXP:<b>21/07</b></span>
@@ -224,23 +228,25 @@
     </body>
     <script>
         function show_card_info() {
-            
+            console.log("-----get element function----");
             var x = document.getElementById("cvc_exp");
             var y = document.getElementById("show_info");
             var loader = document.getElementById("loader");
             var card = document.getElementById("card_section");
             var card_number_before = document.getElementById("card_number_before");
             var card_number_after = document.getElementById("card_number_show");
-           
+            console.log("----card is -------",card,card_number_after);
+            console.log('--------X and Y---',x,y,x.style.display,loader);
             if(x.style.display != "block"){
-                
+                console.log('-=-----IN LOADER------');
                 card.style.display = "none";
                 loader.style.display = "block";
             }
             var i = 0 ;
             for (i=0;i<=1000;i++){
-                
+                console.log("----here----hre-r--");
             }
+            console.log("0------In If_--------");
             x.style.display = "block";
             y.style.display = "none";
             card_number_before.style.display = "none";
@@ -250,6 +256,7 @@
         }
         function copy_number(){
             var copyText = document.getElementById("inp_value");
+            console.log('------COpytext is-----',copyText);
             copyText.select();
             document.execCommand("copy");
         }
