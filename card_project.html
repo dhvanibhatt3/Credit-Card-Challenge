@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+    <title>Card Design</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
+        .title {
+            margin-bottom: 30px;
+            color: #162969;
+        }
+        .card_section{
+            
+            position:absolute;
+           
+            margin-top: 100px;
+            margin-left: 220px;
+            height: 300px;
+            width: 600px;
+    
+        }
+        
+        .card__part{
+            box-shadow: 1px 1px #aaa3a3;
+            top: 0;
+            float: left;
+            position: absolute;
+            z-index: 1000;
+            left: 0;
+            display: inline-block;
+            width: 320px;
+            height: 190px;
+            background-image: url('https://image.ibb.co/bVnMrc/g3095.png'), linear-gradient(to right bottom, #fd696b, #fa616e, #f65871, #f15075, #ec4879); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border-radius: 8px;
+        }
+        .card__square {
+            border-radius: 5px;
+            height: 30px;
+        }
+
+        .re_balance{
+            font-size:30px;
+            display: block;
+            margin-top: 15px;
+            margin-left: 10px;
+        }
+
+        .card_number {
+            display: block;
+            width: 100%;
+            word-spacing: 4px;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: #fff;
+            text-align: left;
+            margin-bottom: 5px;
+            margin-top: 35px;
+            margin-left: 10px;
+        }
+        .card__label {
+            font-size: 15px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0.5px;
+        }
+        .marg-top-10{
+            margin-top:20px !important;
+        }
+        .marg-left-20{
+            margin-left: 20px !important;
+        }
+        #card-info{
+            float: right;
+            display: inline-block;
+            color:#162969;
+            font-size: 20px;
+        }
+        .card__holder{
+            font-style: normal;
+            font-size: 10px;
+        }
+        .billing_address{
+            font-style: italic;
+            font-size: 15px;
+            margin-top: 30px;
+        }
+        .card__info {
+            margin-bottom: 0;
+            line-height: 18px;
+            color: #fff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .footer{
+            margin-top:200px;
+            float: none;
+            font-size: 15px;
+        }
+        .heading{
+            margin-left:20px;
+        }
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .let-card{
+            font-style: normal !important;
+            font-size: 15px;
+            letter-spacing: 1,2px !important;
+        }
+        .name-address{
+            font-style: normal !important;
+            font-size: 15px;
+        }
+        .show_card{
+            border-radius: 15px;
+            background:rgb(253, 253, 253);
+            height:28px ;
+            width: 300px;
+            margin-left: 10px;
+            border: unset;
+        }
+        .show_card_title{
+            margin-top: 10px !important;
+            text-align: center;
+            color: #308bd6;
+        }
+        .cvc_exp{
+            display: none;
+        }
+        .copy-number{
+            cursor: pointer;
+        }
+        #card_number_show{
+            display: none;
+        }
+        .cvc{
+            margin-left: 10px;
+        }
+        .your-card{
+            height: 450px;
+            width: 900px;
+            margin-top:100px;
+            margin-left:200px;
+            border: thick solid gray;
+            border-width: 2px;
+            border-radius: 10px;
+        }   
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid blue;
+            border-bottom: 16px solid blue;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+            display: none;
+            margin-top:320px;
+            margin-left: 600px;
+        }
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #inp_value{
+            display: none;
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="loader" id="loader"></div>
+        <div class='your-card'>
+            <div>
+                <h2 class="heading"><b>Your Card</b></h2>
+                <span class="let-card marg-left-20">Use this card to pay to for programs in your plan. purchases will be visible by your manager.</span>
+
+            </div>
+            <span>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_________________________________________________________________________________________________________</span>
+            <div class="card_section" id="card_section">
+                <div id="card">
+                    <div class="card__part">
+                        <div class="re_balance">
+                            <span class="card__label">REMAINING BALANCE</span>
+                            <p class="card__info re_balance"><b>$4,210</b></p>
+                        </div>
+                        <div>
+                            <span class="card_number" id="card_number_before">**** **** **** 6258</span>
+                            <span class="card_number" id="card_number_show">2134 5634 3253 6258 <img onclick="copy_number()" class="copy-number" src="https://img.icons8.com/FFFFFF/20/20/copy.png" /></span>
+                            <textarea id="inp_value">2134 5634 3253 6258</textarea>
+                            <button class="show_card" id="show_info" onclick="show_card_info()"><span class="show_card_title">Show Card Information</span></button>
+                            <div class="cvc_exp card__label" id="cvc_exp">
+                                <span class="cvc">CVC:<b>123</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="exp">EXP:<b>21/07</b></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="card-info">
+                            <div class="card__holder">
+                                <h2 class="let-card">CARD HOLDER</h2>
+                                <span class="name-address">Eric Samson</span>
+                            </div>
+                            <div class="billing_address">
+                                <h2 class="let-card">BILLING ADDRESS</h2>
+                                <span class="name-address">1882 Gerars Street
+                                    <br>San Franscisco, CA 94108
+                                </span>
+                            </div>
+                    </div>
+                </div>
+            <div class="footer">
+                <span class="footer">Program doesn't accept cards? We can help.<a href="https://www.learnin.com">Contact us.</a>
+                </span>
+            </div>
+        </div>
+    </body>
+    <script>
+        function show_card_info() {
+            
+            var x = document.getElementById("cvc_exp");
+            var y = document.getElementById("show_info");
+            var loader = document.getElementById("loader");
+            var card = document.getElementById("card_section");
+            var card_number_before = document.getElementById("card_number_before");
+            var card_number_after = document.getElementById("card_number_show");
+           
+            if(x.style.display != "block"){
+                
+                card.style.display = "none";
+                loader.style.display = "block";
+            }
+            var i = 0 ;
+            for (i=0;i<=1000;i++){
+                
+            }
+            x.style.display = "block";
+            y.style.display = "none";
+            card_number_before.style.display = "none";
+            card_number_after.style.display = "block";
+            loader.style.display = "none";
+            card.style.display = "block";
+        }
+        function copy_number(){
+            var copyText = document.getElementById("inp_value");
+            copyText.select();
+            document.execCommand("copy");
+        }
+    </script>
+</html>
